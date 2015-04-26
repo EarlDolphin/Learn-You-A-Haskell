@@ -1,12 +1,4 @@
-1. Remove ./ch1 and add ./ch2
-2. Create a lizt project in ./ch2
-  - /ch2/lizt/
-  a) main.hs -- main source file
-  b) lizt.cabal -- cabal build description
-  c) Setup.hs -- build script
-  d) README -- info
-  e) LICENSE -- BSD3
-
+1. Write the types for all functions of ch2/lizt/main.hs
 
 ----------------
 Recurring TODOs:
