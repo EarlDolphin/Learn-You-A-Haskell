@@ -62,7 +62,7 @@ ghci> reverse [5,4,3,2,1]
 
 8. take
 -------
-takes number and a list. It extracts that many elements from the beginning of the list. Watch.
+takes number and a list. It extracts that many elements from the beginning of the list.
 
 ghci> take 3 [5,4,3,2,1]
 [5,4,3]
