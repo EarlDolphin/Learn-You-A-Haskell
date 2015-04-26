@@ -1,0 +1,15 @@
+1. Remove ./ch1 and add ./ch2
+2. Create a lizt project in ./ch2
+  - /ch2/lizt/
+  a) main.hs -- main source file
+  b) lizt.cabal -- cabal build description
+  c) Setup.hs -- build script
+  d) README -- info
+  e) LICENSE -- BSD3
+
+
+----------------
+Recurring TODOs:
+  refer to:
+    - https://wiki.haskell.org/How_to_write_a_Haskell_program
+    - https://wiki.haskell.org/Structure_of_a_Haskell_project
