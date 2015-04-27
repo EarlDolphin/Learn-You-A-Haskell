@@ -31,12 +31,14 @@ module Lizt where
 -- 1. head
 -- takes a list and returns its head. The head of a list is basically its first element.
 head' :: [a] -> a
-head' [] = error "cannot call head on an empty list"
+head' [] = error "cannot call head\' on an empty list"
 head' (x:xs) = x
 
 -- 2. tail
 -- takes a list and returns its tail. In other words, it chops off a list's head.
-{-tail :: [a] -> [a]-}
+tail' :: [a] -> [a]
+tail' [] = error "cannot call tail\' on an empty list"
+tail' (x:xs) = xs
 
 {--- 3. last-}
 {--- takes a list and returns its last element.-}
