@@ -35,157 +35,182 @@ import Lizt
 main :: IO ()
 main = hspec $ do
 
-  describe "head\'" $ do
-    it "head\' [5,4,3,2,1] should return (5 :: Int)" $
+  describe "head'" $ do
+    it "head' [5,4,3,2,1] should return (5 :: Int)" $
       head' [5,4,3,2,1] `shouldBe` (5 :: Int)
-    it "head\' [] should throw an exception" $
+    it "head' [] should throw an exception" $
       evaluate (head' []) `shouldThrow` anyException
-    it "head\' [1] should return (1 :: Int)" $
+    it "head' [1] should return (1 :: Int)" $
       head' [1] `shouldBe` (1 :: Int)
-    it "head\' \"zabracadabra\" should return (\'z\' :: Char)" $
+    it "head' \"zabracadabra\" should return ('z' :: Char)" $
       head' "zabracadabra" `shouldBe` ('z' :: Char)
-    it "head\' ([2] ++ [5..]) should return 2" $
+    it "head' ([2] ++ [5..]) should return 2" $
       head' ([2] ++ [5..]) `shouldBe` 2
 -----------------------------------------------------------------
 
-  describe "tail\'" $ do
-    it "tail\' [5,4,3,2,1] should return ([4,3,2,1] :: [Int])" $
+  describe "tail'" $ do
+    it "tail' [5,4,3,2,1] should return ([4,3,2,1] :: [Int])" $
       tail' [5,4,3,2,1] `shouldBe` ([4,3,2,1] :: [Int])
-    it "tail\' [] should throw an exception" $ do
+    it "tail' [] should throw an exception" $
       evaluate (tail' []) `shouldThrow` anyException
-    it "tail\' [1] should return []" $
+    it "tail' [1] should return []" $
       tail' [1] `shouldBe` []
-    it "tail\' \"zabracdabra\" should return (\"abracadabra\" :: [Char])" $
+    it "tail' \"zabracdabra\" should return (\"abracadabra\" :: [Char])" $
       tail' "zabracadabra" `shouldBe` ("abracadabra" :: [Char])
 -----------------------------------------------------------------
-{-
- -3. last
- --------
- -takes a list and returns its last element.
- -
- -ghci> last [5,4,3,2,1]
- -1 
- -=======
- -}
 
-{-
- -4. init
- --------
- -takes a list and returns everything except its last element.
- -
- -ghci> init [5,4,3,2,1]
- -[5,4,3,2] 
- -=======
- -}
+  describe "last'" $ do
+    it "last' [5,4,3,2,1] should return (1 :: Int)" $
+      last' [5,4,3,2,1] `shouldBe` (1 :: Int)
+    it "last' [] should throw an exception" $
+      evaluate (last' []) `shouldThrow` anyException
+    it "last' [1] should return (1 :: Int)" $
+      last' [1] `shouldBe` (1 :: Int)
+    it "last' \"abracadabraz\" should return ('z' :: Char)" $
+      last' "abracadabraz" `shouldBe` ('z' :: Char)
+-----------------------------------------------------------------
 
- {-5. length
- --------
- -takes a list and returns its length, obviously.
- -
- -ghci> length [5,4,3,2,1]
- -5
- -=======
- -}
+  describe "init'" $ do
+    it "init' [5,4,3,2,1] should return ([5,4,3,2] :: [Int])" $
+      init' [5,4,3,2,1] `shouldBe` ([5,4,3,2] :: [Int])
+    it "init' [] should throw an error" $
+      evaluate (init' []) `shouldThrow` anyException
+    it "init \"abracadabraz\" should return \"abracadabra\"" $
+      init' "abracadabraz" `shouldBe` "abracadabra"
+    it "init' [1] should return []" $
+      init' [1] `shouldBe` []
+-----------------------------------------------------------------
 
- {-6. null
- --------
- -checks if a list is empty. If it is, it returns True, otherwise it returns False. Use this function instead of xs == [] (if you have a list called xs)
- -
- -ghci> null [1,2,3]
- -False
- -ghci> null []
- -True
- -=======
- -}
+  describe "length'" $ do
+    it "length' [5,4,3,2,1] should return (5 :: Int)" $
+      length' [5,4,3,2,1] `shouldBe` (5 :: Int)
+    it "length' [5] should return (1 :: Int)" $
+      length' [5] `shouldBe` (1 :: Int)
+    it "length' [] should return (0 :: Int)" $
+      length' [] `shouldBe` (0 :: Int)
+    it "init \"abracadabra\" should return (11 :: Int)" $
+      length' "abracadabra" `shouldBe` (11 :: Int)
+-----------------------------------------------------------------
 
- {-7. reverse
- --------
- -reverses a list.
- -
- -ghci> reverse [5,4,3,2,1]
- -[1,2,3,4,5]
- -=======
- -}
+  describe "null'" $ do
+    it "null' [1,2,3] should return False" $
+      null' [1,2,3] `shouldBe` False
+    it "null' [] should return True" $
+      null' [] `shouldBe` True
+    it "null' \"abracadabra\" should return False" $
+      null' "abracadabra" `shouldBe` False
+    it "null' \"\" should return True" $
+      null' "" `shouldBe` True
+-----------------------------------------------------------------
 
- {-8. take
- --------
- -takes number and a list. It extracts that many elements from the beginning of the list.
- -
- -ghci> take 3 [5,4,3,2,1]
- -[5,4,3]
- -ghci> take 1 [3,9,3]
- -[3]
- -ghci> take 5 [1,2]
- -[1,2]
- -ghci> take 0 [6,6,6]
- -[]
- -=======
- -}
+  describe "reverse'" $ do
+    it "reverse' [5,4,3,2,1] should return [1,2,3,4,5]" $
+      reverse' [5,4,3,2,1] `shouldBe` [1,2,3,4,5]
+    it "reverse' [] should return []" $
+      reverse' ([] :: [Int]) `shouldBe` []
+    it "reverse' [1] should return [1]" $
+      reverse' [1] `shouldBe` [1]
+    it "reverse' \"abracadabra\" should return \"arbadacarba\"" $
+      reverse' "abracadabra" `shouldBe` "arbadacarba"
+    it "reverse' \"a\" should return \"a\"" $
+      reverse' "a" `shouldBe` "a"
+-----------------------------------------------------------------
 
- {-9. drop
- --------
- -drops the number of elements from the beginning of a list.
- -
- -ghci> drop 3 [8,4,2,1,5,6]
- -[1,5,6]
- -ghci> drop 0 [1,2,3,4]
- -[1,2,3,4]
- -ghci> drop 100 [1,2,3,4]
- -[] 
- -=======
- -}
+  describe "take'" $ do
+    it "take' 3 [5,4,3,2,1] should return [5,4,3]" $
+      take' 3 [5,4,3,2,1] `shouldBe` [5,4,3]
+    it "take' 1 [3,9,3] should return [3]" $
+      take' 1 [3,9,3] `shouldBe` [3]
+    it "take' 5 [1,2] should return [1,2]" $
+      take' 5 [1,2] `shouldBe` [1,2]
+    it "take' 0 [6,6,6] should return []" $
+      take' 0 [6,6,6] `shouldBe` []
+    it "take' 0 ([] :: [Int]) should return []" $
+      take' 0 ([] :: [Int]) `shouldBe` []
+    it "take' 1 ([] :: [Int]) should return []" $
+      take' 1 ([] :: [Int]) `shouldBe` []
+    it "take' 5 ([] :: [Int]) should return []" $
+      take' 5 ([] :: [Int]) `shouldBe` []
+    it "take' (-2) [1,2,3] should return []" $
+      take' (-2) [1,2,3] `shouldBe` []
+    it "take' (-2) ([] :: [Int]) should return []" $
+      take' (-2) ([] :: [Int]) `shouldBe` []
+-----------------------------------------------------------------
 
- {-10. maximum
- --------
- -takes a list of stuff that can be put in some kind of order and returns the biggest element.
- -=======
- -}
+  describe "drop'" $ do
+    it "drop' 3 [8,4,2,1,5,6] should return [1,5,6]" $
+      drop' 3 [8,4,2,1,5,6] `shouldBe` [1,5,6]
+    it "drop' 0 [1,2,3,4] should return [1,2,3,4]" $
+      drop' 0 [1,2,3,4] `shouldBe` [1,2,3,4]
+    it "drop' 100 [1,2,3,4] should return []" $
+      drop 100 [1,2,3,4] `shouldBe` []
+    it "drop' 1 ([] :: [Int]) should return []" $
+      drop 1 ([] :: [Int]) `shouldBe` []
+    it "drop' (-2) ([] :: [Int]) should return []" $
+      drop (-2) ([] :: [Int]) `shouldBe` []
+    it "drop' (-2) [1,2,3,4,5] should return [1,2,3,4,5]" $
+      drop (-2) [1,2,3,4,5] `shouldBe` [1,2,3,4,5]
+-----------------------------------------------------------------
 
- {-11. minimum
- --------
- -returns the smallest element of a list of orderables.
- -
- -ghci> minimum [8,4,2,1,5,6]
- -1
- -ghci> maximum [1,9,2,3,4]
- -9 
- -=======
- -}
+  describe "maximum'" $ do
+    it "maximum' [8,4,2,1,5,6] should return 8" $
+      maximum' [8,4,2,1,5,6] `shouldBe` 8
+    it "maximum' [1,9,2,3,4] should return 9" $
+      maximum' [1,9,2,3,4] `shouldBe` 9
+    it "maximum' ([] :: [Int]) should raise an exception" $
+      evaluate (maximum' ([] :: [Int])) `shouldThrow` anyException
+    it "maximum' \"\" should raise an exception" $
+      evaluate (maximum' "") `shouldThrow` anyException
+    it "maximum' \"abracadabra\" should return 'r'" $
+      maximum' "abracadabra" `shouldBe` 'r'
+-----------------------------------------------------------------
 
- {-12. sum
- --------
- -takes a list of numbers and returns their sum.
- -
- -ghci> sum [5,2,1,6,3,2,5,7]
- -31
- -=======
- -}
+  describe "minimum'" $ do
+    it "minimum' [8,4,2,1,5,6] should return 1" $
+      minimum' [8,4,2,1,5,6] `shouldBe` 1
+    it "minimum' [1,9,2,3,4] should return 1" $
+      minimum' [1,9,2,3,4] `shouldBe` 1
+    it "minimum' ([] :: [Int]) should raise an exception" $
+      evaluate (minimum' ([] :: [Int])) `shouldThrow` anyException
+    it "minimum' \"\" should raise an exception" $
+      evaluate (minimum' "") `shouldThrow` anyException
+    it "minimum' \"abracadabra\" should return 'a'" $
+      minimum' "abracadabra" `shouldBe` 'a'
+-----------------------------------------------------------------
 
- {-13. product
- --------
- -takes a list of numbers and returns their product.
- -
- -ghci> product [6,2,1,2]
- -24
- -ghci> product [1,2,5,6,7,9,2,0]
- -0
- -=======
- -}
+  describe "sum'" $ do
+    it "sum' [5,2,1,6,3,2,5,7] should return 31" $
+      sum' [5,2,1,6,3,2,5,7] `shouldBe` 31
+    it "sum' ([] :: [Int]) should return 0" $
+      sum' ([] :: [Int]) `shouldBe` 0
+    it "sum' [-5] should return -5" $
+      sum' [-5] `shouldBe` -5
+    it "sum' [-5,-5] should return -10" $
+      sum' [-5,-5] `shouldBe` -10
+-----------------------------------------------------------------
 
- {-14. elem
- --------
- -takes a thing and a list of things and tells us if that thing is an element of the list. It's usually called as an infix function because it's easier to read that way.
- -
- -ghci> 4 `elem` [3,4,5,6]
- -True
- -ghci> 10 `elem` [3,4,5,6]
- -False
- -=======
- --- 2. tail
- --------
- -takes a list and returns its tail. In other words, it chops off a list's head.
- -
- -ghci> tail [5,4,3,2,1]
- -[4,3,2,1] 
- -=======
- -}
+  describe "product'" $ do
+    it "product' [6,2,1,2] should return 24" $
+      product' [6,2,1,2] `shouldBe` 24
+    it "product' ([] :: [Int]) should return 1" $
+      product' ([] :: [Int]) `shouldBe` 1
+    it "product' [-5] should return -5" $
+      product' [-5] `shouldBe` -5
+    it "product' [-5, -5] should return 25" $
+      product' [-5,-5] `shouldBe` 25
+    it "product [1,2,5,6,7,9,2,0] should return 0" $
+      product' [1,2,5,6,7,9,2,0] `shouldBe` 0
+-----------------------------------------------------------------
+
+  describe "elem'" $ do
+    it "4 `elem'` [3,4,5,6] should return True" $
+      4 `elem'` [3,4,5,6] `shouldBe` True
+    it "10 `elem'` [3,4,5,6] should return False" $
+      10 `elem'` [3,4,5,6] `shouldBe` False
+    it "5 `elem'` [] should return False" $
+      5 `elem'` [] `shouldBe` False
+    it "'x' `elem'` \"\" should return False" $
+      'x' `elem'` "" `shouldBe` False
+    it "'x' `elem'` \"abrax\" should return True" $
+      'x' `elem'` "abrax" `shouldBe` True
+-----------------------------------------------------------------
